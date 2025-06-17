@@ -6,7 +6,7 @@ import sqlalchemy
 from src import database as db
 
 router = APIRouter(
-    prefix="/[projects]",
+    prefix="/projects",
     tags=["projects"],
     dependencies=[Depends(auth.get_api_key)],
 )
@@ -36,11 +36,11 @@ def get_projects() -> List[Project]:
         projects = []
         for row in results:
             project = Project(
-                id=row['id'],
-                name=row['name'],
-                date=row['date'],
-                desc=row['desc'],
-                img=row['img']
+                id=row.id,
+                name=row.name,
+                date=row.date,
+                desc=row.desc,
+                img=row.img
             )
             projects.append(project)
     
