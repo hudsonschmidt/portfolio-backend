@@ -23,7 +23,7 @@ app = FastAPI(
     openapi_tags=tags_metadata,
 )
 
-origins = ["https://hudsonschmidt.com"]
+origins = ["http://localhost:3000", "https://hudsonschmidt.com"]
 
 app.add_middleware(
     CORSMiddleware,
