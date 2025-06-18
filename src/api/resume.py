@@ -10,3 +10,23 @@ router = APIRouter(
     tags=["resume"],
     dependencies=[Depends(auth.get_api_key)],
 )
+
+@router.get("/", tags=["resume"], response_model=str)
+def get_projects() -> str:
+    """
+    Retrieves all projects and respective details.
+    """
+    with db.engine.begin() as connection:
+        result = connection.execute(
+            sqlalchemy.text(
+                """
+                SELECT link
+                FROM resume
+                ORDER BY id DESC
+                LIMIT 1
+                """
+            )
+        ).scalar_one()
+
+    
+    return result
