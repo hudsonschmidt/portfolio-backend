@@ -12,9 +12,9 @@ router = APIRouter(
 )
 
 @router.get("/", tags=["resume"], response_model=str)
-def get_projects() -> str:
+def get_resume() -> str:
     """
-    Retrieves all projects and respective details.
+    Retrieves latest resume.
     """
     with db.engine.begin() as connection:
         result = connection.execute(
